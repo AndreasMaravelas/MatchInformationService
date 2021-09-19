@@ -6,9 +6,9 @@ namespace MatchInformation.Domain.Entities
 {
     public class MatchEntity : AuditableEntity
     {
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
         public string Description { get; set; }
-        public DateTime MatchDate { get; set; }
+        public DateTime MatchDateTime { get; set; }
         public string TeamA { get; set; }
         public string TeamB { get; set; }
         public Sport Sport { get; set; }

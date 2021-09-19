@@ -30,21 +30,21 @@ namespace MatchInformation.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("all", Name = "GetAll")]
+        [HttpGet("all", Name = "Get all match odds")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<MatchOddsDto>>> GetAll(CancellationToken token = default)
         {
             return Ok(await _mediator.Send(new GetMatchOddsListQuery(), token));
         }
 
-        [HttpGet("{id", Name = "Get")]
+        [HttpGet("{id}", Name = "Get match odds")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<MatchDto>> Get(Guid id, [FromQuery] Guid matchId, CancellationToken token = default)
         {
             return Ok(await _mediator.Send(new GetMatchOddsQuery() { Id = id }, token));
         }
 
-        [HttpPost("create", Name = "Create")]
+        [HttpPost("create", Name = "Create odds for match")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<Guid>> Create(
           [FromBody] CreateMatchOddsCommand command, CancellationToken token = default)
@@ -53,7 +53,7 @@ namespace MatchInformation.Controllers
 
         }
 
-        [HttpPost("update", Name = "Update")]
+        [HttpPost("update", Name = "Update odds for match")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<Guid>> Update(
             [FromBody] UpdateMatchOddsCommand command, CancellationToken token = default)
@@ -62,7 +62,7 @@ namespace MatchInformation.Controllers
 
         }
 
-        [HttpDelete("{id}", Name = "Delete")]
+        [HttpDelete("{id}", Name = "Delete odds")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]

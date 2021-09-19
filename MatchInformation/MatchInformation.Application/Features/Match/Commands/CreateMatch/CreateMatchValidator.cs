@@ -11,7 +11,7 @@ namespace MatchInformation.Application.Features.Match.Commands.CreateMatch
                 .NotNull()
                 .MaximumLength(50).WithMessage("{PropertyName} must not exceed 10 characters.");
 
-            RuleFor(p => p.MatchDate)
+            RuleFor(p => p.MatchDateTime)
                  .NotNull()
                  .WithMessage("{PropertyName} is required.");
 

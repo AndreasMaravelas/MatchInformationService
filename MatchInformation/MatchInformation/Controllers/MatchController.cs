@@ -21,13 +21,9 @@ namespace MatchInformation.Controllers
     public class MatchController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<MatchController> _logger;
 
-        public MatchController(
-            IMediator mediator,
-            ILogger<MatchController> logger)
+        public MatchController(IMediator mediator)
         {
-            _logger = logger;
             _mediator = mediator;
         }
 
@@ -38,7 +34,7 @@ namespace MatchInformation.Controllers
             return Ok(await _mediator.Send(new GetMatchListQuery(), token));
         }
 
-        [HttpGet("{id", Name = "Get")]
+        [HttpGet("{id}", Name = "Get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<MatchDto>> Get(Guid id, CancellationToken token = default)
         {

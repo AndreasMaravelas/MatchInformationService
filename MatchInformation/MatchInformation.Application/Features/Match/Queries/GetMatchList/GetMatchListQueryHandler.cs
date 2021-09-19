@@ -3,6 +3,7 @@ using MatchInformation.Application.Contracts.Persistence;
 using MatchInformation.Application.Models;
 using MediatR;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,7 +22,8 @@ namespace MatchInformation.Application.Features.Match.Queries.GetMatchList
 
         public async Task<IEnumerable<MatchDto>> Handle(GetMatchListQuery request, CancellationToken token = default)
         {
-            var matchList = await _matchRepository.GetPagedMatchesForPeriod(request.From, request.To, request.Page, request.Size, token);
+            //var matchList = await _matchRepository.GetPagedMatchesForPeriod(request.From, request.To, request.Page, request.Size, token);
+            var matchList = (await _matchRepository.ListAllAsync(token)).OrderBy(x => x.MatchDateTime);
             return _mapper.Map<IEnumerable<MatchDto>>(matchList);
         }
     }

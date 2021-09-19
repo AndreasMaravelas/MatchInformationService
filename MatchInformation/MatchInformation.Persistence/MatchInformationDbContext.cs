@@ -24,11 +24,12 @@ namespace MatchInformation.Persistence
             {
                 entity.ToTable("Match");
 
-                entity.HasKey(e => e.ID);
+                entity.HasKey(e => e.Id);
 
                 entity.HasMany(e => e.Odds)
                       .WithOne(e => e.Match)
-                      .HasForeignKey(e => e.MatchId);
+                      .HasForeignKey(e => e.MatchId)
+                      .OnDelete(DeleteBehavior.Cascade);
   
             });
 
@@ -36,7 +37,7 @@ namespace MatchInformation.Persistence
             {
                 entity.ToTable("MatchOdds");
 
-                entity.HasKey(e => e.ID);
+                entity.HasKey(e => e.Id);
 
                 entity.HasOne(e => e.Match)
                       .WithMany(e => e.Odds)

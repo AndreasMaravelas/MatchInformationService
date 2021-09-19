@@ -1,10 +1,10 @@
 ﻿using MatchInformation.Application.Contracts.Persistence;
+using MatchInformation.Persistence;
 using MatchInformation.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace MatchInformation.Persistence
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class PersistenceServiceRegistrations
     {
@@ -12,7 +12,7 @@ namespace MatchInformation.Persistence
         {
             services.AddDbContext<MatchInformationDbContext>(options =>
                 options.UseSqlServer(
-                    configuration.GetConnectionString("MatchInformationDbConnectionString"),
+                    configuration.GetConnectionString("MatchInformationServiceDBConnectionString"),
                     b => b.MigrationsAssembly(typeof(MatchInformationDbContext).Assembly.FullName)));
 
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));

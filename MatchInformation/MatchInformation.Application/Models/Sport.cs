@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MatchInformation.Application.Models
+﻿namespace MatchInformation.Application.Models
 {
     public enum Sport
     {

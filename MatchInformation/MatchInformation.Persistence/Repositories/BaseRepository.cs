@@ -19,7 +19,7 @@ namespace MatchInformation.Persistence.Repositories
 
         public virtual async Task<T> GetByIdAsync(Guid id, CancellationToken token = default)
         {
-            return await _dbContext.Set<T>().FindAsync(id, token);
+            return await _dbContext.Set<T>().FindAsync(id);
         }
 
         public async Task<IReadOnlyList<T>> ListAllAsync(CancellationToken token = default)
