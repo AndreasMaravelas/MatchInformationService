@@ -1,16 +1,14 @@
 ﻿using MatchInformation.Application.Features.Match.Commands.CreateMatch;
 using MatchInformation.Application.Features.Match.Commands.DeleteMatch;
 using MatchInformation.Application.Features.Match.Commands.UpdateMatch;
-using MatchInformation.Application.Features.Match.Queries.GetMatch;
 using MatchInformation.Application.Features.Match.Queries.GetMatchList;
+using MatchInformation.Application.Features.Match.Queries.GetMatchWithOdds;
 using MatchInformation.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,11 +32,11 @@ namespace MatchInformation.Controllers
             return Ok(await _mediator.Send(new GetMatchListQuery(), token));
         }
 
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetWithOdds")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<MatchDto>> Get(Guid id, CancellationToken token = default)
+        public async Task<ActionResult<MatchDto>> GetWithOdds(Guid id, [FromQuery] bool? withOdds, CancellationToken token = default)
         {
-            return Ok(await _mediator.Send(new GetMatchQuery() { Id = id }, token));
+            return Ok(await _mediator.Send(new GetMatchWithOddsQuery() { Id = id, WithOdds = withOdds }, token));
         }
 
         [HttpPost("create", Name = "Create")]

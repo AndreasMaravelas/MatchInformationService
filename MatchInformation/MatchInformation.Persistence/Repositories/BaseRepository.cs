@@ -11,10 +11,12 @@ namespace MatchInformation.Persistence.Repositories
     public class BaseRepository<T> : IRepository<T> where T : class
     {
         protected readonly MatchInformationDbContext _dbContext;
+        protected DbSet<T> DbSet { get; }
 
         public BaseRepository(MatchInformationDbContext dbContext)
         {
             _dbContext = dbContext;
+            DbSet = dbContext.Set<T>();
         }
 
         public virtual async Task<T> GetByIdAsync(Guid id, CancellationToken token = default)

@@ -7,8 +7,8 @@ namespace MatchInformation.Domain.Entities
     {
         public Guid Id { get; set; }
         public Guid MatchId { get; set; }
-        public string Specifier { get; set; }
-        public string Odd { get; set; }
+        public Specifier Specifier { get; set; }
+        public double Odd { get; set; }
         public MatchEntity Match { get; set; }
     }
 }

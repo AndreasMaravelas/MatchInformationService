@@ -24,5 +24,23 @@ namespace MatchInformation.Persistence.Repositories
                 .AsNoTracking()
                 .ToListAsync(token);
         }
+
+        public async Task<MatchEntity> GetWithOddsAsync(Guid id, bool? withOdds, CancellationToken token = default)
+        {
+            //var result = await DbSet
+            //    .Where(a => a.Id == id)
+            //    .Include(d => d.Odds.Where(o => o.MatchId == id))
+            //    .FirstOrDefaultAsync();
+
+            var query = DbSet
+                .Where(a => a.Id == id);
+
+            if(withOdds.HasValue && withOdds.Value)
+            {
+                query = query.Include(d => d.Odds.Where(o => o.MatchId == id));
+            }
+
+            return await query.FirstOrDefaultAsync(token); ;
+        }
     }
 }

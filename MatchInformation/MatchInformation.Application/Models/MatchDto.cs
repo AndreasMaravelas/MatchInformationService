@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MatchInformation.Application.Models
 {
@@ -10,6 +11,7 @@ namespace MatchInformation.Application.Models
         public string TeamA { get; set; }
         public string TeamB { get; set; }
         public Sport Sport { get; set; }
+        public IEnumerable<MatchOddsDto> Odds { get; set; }
     }
 }
 

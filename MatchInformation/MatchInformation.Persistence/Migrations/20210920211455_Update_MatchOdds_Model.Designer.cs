@@ -4,14 +4,16 @@ using MatchInformation.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MatchInformation.Persistence.Migrations
 {
     [DbContext(typeof(MatchInformationDbContext))]
-    partial class MatchInformationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210920211455_Update_MatchOdds_Model")]
+    partial class Update_MatchOdds_Model
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
