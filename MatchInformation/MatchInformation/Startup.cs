@@ -35,6 +35,7 @@ namespace MatchInformation
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                db.Database.EnsureCreated();
             }
 
             app.UseSwagger();
@@ -42,8 +43,6 @@ namespace MatchInformation
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Match Information API");
             });
-
-            db.Database.EnsureCreated();
 
             app.UseRouting();
 
